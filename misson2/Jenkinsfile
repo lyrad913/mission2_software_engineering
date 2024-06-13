@@ -9,14 +9,13 @@ pipeline {
             }
         }
         stage('Build') {
-        	script {
+        	steps {
+        		script {
                     // JUnit5 테스트 컴파일을 위한 classpath 설정
                     def classpath = "classes:lib/*:/Users/junheejang/.p2/pool/plugins/junit-platform-console-standalone-1.7.1.jar"
                     // 소스 코드 컴파일
                 	sh 'javac -encoding UTF-8 -d classes -cp ${classpath} misson2/src/*.java'
-                }
-            steps {
-                
+                }               
             }
         }
         stage('Test') {
