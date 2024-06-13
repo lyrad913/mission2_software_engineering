@@ -1,37 +1,41 @@
-pipeline{
-	agent any
-	
-	stages {
-	stage('Checkout') {
-		steps{
-			// 소스코드 체아웃
-    		checkout scm
-    	}
-	}
-	stage('Build'){
-		steps{
-			sh 'javac -encoding UTF-8 -d classes misson2/scr/**/*.java'
-		}
-	}
-	stage('Test'){
-		steps{
-			// JUnit5 테스트 실행을 위한 classpath 설
-			def classpath = "classes;lib/;/Users/junheejang/.p2/pool/plugins/junit-platform-console-standalone-1.7.1.jar"
-			// Run JUnit5 Test
-			bat  'java -cp classes;lib/; /Users/junheejang/.p2/pool/plugins/junit-platform-console-standalone-1.7.1.jar org.junit.platform.console.ConsoleLauncher --scan-classpath > test_results.txt'
-		}
-	}
-		
-	post{
-		always {
-			archiveArtifacts 'test_results.txt'
-		}
-		failure{
-			echo 'Bulid or test failed'
-		}
-		success{
-			echo 'Build and test succeeded'
-		}
-	}	
-	}
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // 소스코드 체크아웃
+                checkout scm
+            }
+        }
+        stage('Build') {
+            steps {
+                // 소스 코드 컴파일
+                sh 'javac -encoding UTF-8 -d classes misson2/src/**/*.java'
+            }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    // JUnit5 테스트 실행을 위한 classpath 설정
+                    def classpath = "classes;lib/*;/Users/junheejang/.p2/pool/plugins/junit-platform-console-standalone-1.7.1.jar"
+                    // Run JUnit5 Tests
+                    bat "java -cp ${classpath} org.junit.platform.console.ConsoleLauncher --scan-classpath > test_results.txt"
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            // 테스트 결과 파일 저장
+            archiveArtifacts 'test_results.txt'
+        }
+        failure {
+            echo 'Build or test failed'
+        }
+        success {
+            echo 'Build and test succeeded'
+        }
+    }   
 }
