@@ -14,7 +14,7 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return String.format("Book{id: '%d',제목: '%s',저자: '%s',출판년도: %d}", id, title, author, year);
+		return String.format("Book{id: '%d, 제목: '%s', 저자: '%s', 출판년도: %d}", id, title, author, year);
 	}
 
 	public int getId() {
