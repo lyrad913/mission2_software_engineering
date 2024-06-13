@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 // 소스 코드 컴파일
-                sh 'javac -encoding UTF-8 -d classes misson2/src/**/*.java'
+                sh 'javac -encoding UTF-8 -d classes misson2/src/*.java'
             }
         }
         stage('Test') {
