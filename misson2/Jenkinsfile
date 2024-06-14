@@ -24,7 +24,7 @@ pipeline {
                     // JUnit5 테스트 실행을 위한 classpath 설정
                     def classpath = "classes:lib/*:/Users/junheejang/.p2/pool/plugins/junit-platform-console-standalone-1.7.1.jar"
                     // Run JUnit5 Tests
-                    sh "java -Dfile.encoding=UTF8 -cp ${classpath} org.junit.platform.console.ConsoleLauncher --scan-classpath > test_results.txt"
+                    sh "java -cp ${classpath} org.junit.platform.console.ConsoleLauncher --scan-classpath > test_results.txt"
                 }
             }
         }
