@@ -1,0 +1,18 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class PerformaceTest {
+
+	private BookManager manager;
+	private Book book1, book2, book3;
+
+	@BeforeAll
+	void setUp() throws RuntimeException {
+		manager = new BookManager();
+		book1 = new Book(1, "자바 기초", "Jane", 2021);
+		book2 = new Book(2, "소프트웨어 공학", "Tom", 2014);
+		book3 = new Book(3, "분산 컴퓨팅", "Yoon", 2024);
+	}
+}
