@@ -33,7 +33,7 @@ pipeline {
     post {
         always {
             // 테스트 결과 파일 저장
-            archiveArtifacts 'test_results.txt'
+            archiveArtifacts 'test_results.txt', fingerprint: true
             // 특정 폴더에 파일 저장
             sh 'cp test_results.txt /Users/junheejang/git/mission2_software_engineering/result'
             
