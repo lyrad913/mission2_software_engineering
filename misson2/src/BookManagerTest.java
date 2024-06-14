@@ -106,4 +106,58 @@ class BookManagerTest {
 		System.out.println("*** Pass the Remove Book Test ***");
 	}
 
+	long runSearch(int id) {
+		long start = System.nanoTime();
+		manager.SearchBook(id);
+		long end = System.nanoTime();
+
+		return end - start;
+	}
+
+	long runBinarySearch(int id) {
+		long start = System.nanoTime();
+		manager.BinarySearchBook(id);
+		long end = System.nanoTime();
+
+		return end - start;
+	}
+
+	double calImprovement(long time1, long time2) {
+		double improvement = (time1 - time2) / (time1 + 1e-10) * 100;
+		return improvement;
+	}
+
+	@Test
+	void peformanceTestOnSearch() {
+		System.out.println("\n=== Search Book Performance Test Begin ===");
+		// Make Dummy,
+		// Uniqueness is proved, add the Book directly
+		manager = new BookManager();
+		int numDummy = 1000000;
+		for (int id = 1; id <= numDummy; ++id) {
+			Book newBook = new Book(id, "Book" + id, "Author" + id, 2000);
+			manager.getBookshelf().add(newBook);
+		}
+
+		long searchFrontRet = runSearch(10);
+		long searchMidRet = runSearch(Math.floorDiv(numDummy, 2));
+		long searchEndRet = runSearch(numDummy - 10);
+
+		long biSearchFrontRet = runBinarySearch(10);
+		long biSearchMidRet = runBinarySearch(Math.floorDiv(numDummy, 2));
+		long biSearchEndRet = runBinarySearch(999990);
+
+		System.out.println("[[Result on Search]]\n" + "Front : " + searchFrontRet + "ns\n" + "Mid : " + searchMidRet
+				+ "ns\n" + "End : " + searchEndRet + "ns\n");
+		System.out.println("[[Result on BinarySearch]]\n" + "Front : " + biSearchFrontRet + "ns\n" + "Mid : "
+				+ biSearchMidRet + "ns\n" + "End : " + runBinarySearch(999990) + "ns\n");
+
+		System.out.println("[[Improvement]]\n" + "Front : " + calImprovement(searchFrontRet, biSearchFrontRet) + "%\n"
+				+ "Mid : " + calImprovement(searchMidRet, biSearchMidRet) + "%\n" + "End : "
+				+ calImprovement(searchEndRet, biSearchEndRet) + "%\n");
+
+		System.out.println("*** End the Search Book Performance Test ***");
+
+	}
+
 }
