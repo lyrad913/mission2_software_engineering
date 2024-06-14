@@ -63,7 +63,7 @@ class BookManagerTest {
 
 		System.out.println("*** Pass the Search Book Test ***");
 	}
-	
+
 	@Test
 	void testRemoveBook() throws RuntimeException {
 		System.out.println("\n=== Remove Book Test Begin ===");
