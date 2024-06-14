@@ -1,0 +1,32 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class PerformaceTest {
+
+	BookManager manager;
+	@BeforeEach
+	void setUp() throws Exception {
+		manager=new BookManager();
+		for(int i=1 ; i<=1000000;i++) {
+			Book book = new Book(i,"test","test",2000);
+			manager.AddBook(book);
+		}
+	}
+
+
+
+	@Test
+	void test() {
+		long start_time=System.currentTimeMillis();
+		int search_id=500000;
+		System.out.println("Find book id : "+search_id);
+		manager.SearchBook(search_id);
+		long end_time=System.currentTimeMillis();
+		long time_diff=(end_time-start_time)/1000;
+		
+		System.out.println("It takes "+time_diff+"(s)");
+	}
+
+}

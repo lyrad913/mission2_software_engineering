@@ -65,6 +65,23 @@ class BookManagerTest {
 	}
 
 	@Test
+	void testSearchBS() throws RuntimeException {
+		System.out.println("\n=== Binaray Search Test Begin ===");
+		System.out.println("Add book id 1, 2 to bookshelf");
+		manager.AddBook(book1);
+		manager.AddBook(book2);
+
+		assertNotNull(manager.search_bs(1));
+		System.out.println("Find book id 1 : " + manager.search_bs(1));
+		assertNotNull(manager.search_bs(2));
+		System.out.println("Find book id 2 : " + manager.search_bs(2));
+		assertNull(manager.search_bs(3));
+		System.out.println("Book id 3 not exist, null return : " + manager.search_bs(3));
+
+		System.out.println("*** Pass the Binary Search Book Test ***");
+	}
+
+	@Test
 	void testRemoveBook() throws RuntimeException {
 		System.out.println("\n=== Remove Book Test Begin ===");
 		System.out.println("Add book id 1, 2 to bookshelf");

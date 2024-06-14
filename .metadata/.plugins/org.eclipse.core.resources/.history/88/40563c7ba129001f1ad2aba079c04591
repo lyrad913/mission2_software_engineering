@@ -1,0 +1,21 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+class PerformaceTest {
+	private BookManager manager;
+
+	@BeforeAll
+	static void setUpBeforeClass() throws Exception {
+		for(int i = 1;i <=10000000;i++) {
+			Book book= new Book(i,String.format("test : %d",i),String.format("test : %d",i));
+		}
+	}
+
+	@Test
+	void test() {
+		fail("Not yet implemented");
+	}
+
+}

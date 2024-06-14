@@ -1,0 +1,89 @@
+import java.util.Vector;
+
+/*
+ * TODO: 
+ * 		1. search_revision branch create
+ * 		2. implement search_bs(); binary_search by id
+ * 		3. do junit test, git merge --> main
+ * 		4. search VS search_bs performance test on performance_test branch --> git merge
+ * 		5. Stdout --> save to folder by Jenkins stage
+ * 		6. README
+ * 			- pdf
+ * 			- role
+ * 			- git/jenkins error msg (at least 1, max 5 for each)
+ *  		- git project address
+ *  asdfㅁㄴㅇ
+ */
+
+/*
+ * FIXME:
+ * 		1. Coding Style?
+ * 		2. Documentation?
+ * 		3. Comment
+ * */
+
+public class BookManager {
+
+	private Vector<Book> bookshelf;
+
+	public BookManager() {
+		bookshelf = new Vector<>();
+	}
+
+	public void AddBook(Book toAdd) throws BookManager.BookExistException {
+		int id = toAdd.getId();
+		if (this.SearchBook(id) == null) {
+			this.bookshelf.add(toAdd);
+		} else {
+			String msg = "해당 ID(" + toAdd.getId() + ")는 이미 존재합니다.";
+			throw new BookExistException(msg);
+		}
+	}
+
+	public Book SearchBook(int id) {
+		for (Book book : bookshelf) {
+			if (book.getId() == id) {
+				return book;
+			}
+		}
+		return null;
+	}
+	public Book search_bs(int id) {
+		int left=0,right=this.bookshelf.size()-1;
+		while(left<right) {
+			int mid=(left+right)>>1;
+		}
+		
+	}
+	public void RemoveBook(int id) throws BookManager.BookNOTFindException {
+		Book toRemove = this.SearchBook(id);
+		if (toRemove != null) {
+			this.bookshelf.remove(toRemove);
+		} else {
+			String msg = "해당 ID(" + id + ")의 도서를 찾을 수 없습니다.";
+			throw new BookNOTFindException(msg);
+		}
+	}
+
+	public Vector<Book> getBookshelf() {
+		return this.bookshelf;
+	}
+
+	public class BookNOTFindException extends RuntimeException {
+		public BookNOTFindException() { // Do Nothing
+		}
+
+		public BookNOTFindException(String msg) {
+			super(msg);
+		}
+	}
+
+	public class BookExistException extends RuntimeException {
+		public BookExistException() { // Do Nothing
+		}
+
+		public BookExistException(String msg) {
+			super(msg);
+		}
+	}
+}
