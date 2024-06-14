@@ -1,5 +1,5 @@
 import java.util.Vector;
-
+import java.util.Collections;
 /*
  * TODO: 
  * 		1. search_revision branch create
@@ -34,6 +34,7 @@ public class BookManager {
 		int id = toAdd.getId();
 		if (this.SearchBook(id) == null) {
 			this.bookshelf.add(toAdd);
+			Collections.sort(this.bookshelf,new BookComparator());
 		} else {
 			String msg = "해당 ID(" + toAdd.getId() + ")는 이미 존재합니다.";
 			throw new BookExistException(msg);
