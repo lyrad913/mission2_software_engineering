@@ -71,12 +71,12 @@ class BookManagerTest {
 		manager.AddBook(book1);
 		manager.AddBook(book2);
 
-		assertNotNull(manager.search_bs(1));
-		System.out.println("Find book id 1 : " + manager.search_bs(1));
-		assertNotNull(manager.search_bs(2));
-		System.out.println("Find book id 2 : " + manager.search_bs(2));
-		assertNull(manager.search_bs(3));
-		System.out.println("Book id 3 not exist, null return : " + manager.search_bs(3));
+		assertNotNull(manager.BinarySearchBook(1));
+		System.out.println("Find book id 1 : " + manager.BinarySearchBook(1));
+		assertNotNull(manager.BinarySearchBook(2));
+		System.out.println("Find book id 2 : " + manager.BinarySearchBook(2));
+		assertNull(manager.BinarySearchBook(3));
+		System.out.println("Book id 3 not exist, null return : " + manager.BinarySearchBook(3));
 
 		System.out.println("*** Pass the Binary Search Book Test ***");
 	}
