@@ -48,7 +48,6 @@ public class BookManager {
 		}
 		return null;
 	}
-	
 	public Book search_bs(int id) {
 		int left=0,right=this.bookshelf.size()-1;
 		while(left<=right) {
@@ -65,7 +64,6 @@ public class BookManager {
 		return null;
 
 	}
-	
 	public void RemoveBook(int id) throws BookManager.BookNOTFindException {
 		Book toRemove = this.SearchBook(id);
 		if (toRemove != null) {
