@@ -1,3 +1,4 @@
+import java.util.Comparator;
 
 public class Book {
 	private int id;
@@ -19,5 +20,10 @@ public class Book {
 
 	public int getId() {
 		return id;
+	}
+}
+class BookComparator implements Comparator<Book>{
+	public int compare(Book arg1,Book arg2) {
+		return ((Book)arg1).getId() >((Book)arg2).getId() ?1:0;
 	}
 }
