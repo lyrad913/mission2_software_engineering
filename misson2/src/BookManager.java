@@ -58,6 +58,20 @@ public class BookManager {
 			throw new BookNOTFindException(msg);
 		}
 	}
+	public Book search_bs(int id) {
+		int left=0,right=this.bookshelf.size()-1;
+		while(left<=right) {
+			int mid=(left+right)>>1;
+			Book book =this.bookshelf.get(mid);
+			
+			if(book.getId()==id)
+				return book;
+			else if(book.getId()<id)
+				left=mid+1;
+			else
+				right=mid-1;
+		}
+		return null;
 
 	public Vector<Book> getBookshelf() {
 		return this.bookshelf;
