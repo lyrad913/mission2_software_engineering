@@ -1,3 +1,4 @@
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -17,7 +18,10 @@ class BookManagerTest {
 		book2 = new Book(2, "소프트웨어 공학", "Tom", 2014);
 		book3 = new Book(3, "분산 컴퓨팅", "Yoon", 2024);
 	}
-
+	/**
+	 * Testing AddBook() Add books that have id 1, 2 and 3 and check it throws an error if trying to add books that already existing id 
+	 * @throws RuntimeException
+	 */
 	@Test
 	void testAddBook() throws RuntimeException {
 		System.out.println("\n=== Add Book Test Begin ===");
@@ -46,7 +50,10 @@ class BookManagerTest {
 		System.out.println("*** Pass the Add Book Test ***");
 
 	}
-
+	/**
+	 * Testing SearchBook() test full scan search, and check if it throws an error if you try to find an id that doesn't exist
+	 * @throws RuntimeException
+	 */
 	@Test
 	void testSearchBook() throws RuntimeException {
 		System.out.println("\n=== Search Book Test Begin ===");
@@ -63,7 +70,10 @@ class BookManagerTest {
 
 		System.out.println("*** Pass the Search Book Test ***");
 	}
-
+	/**
+	 * Testing BinarySearchBook() test binary search, and check if it throws an error if you try to find an id that doesn't exist
+	 * @throws RuntimeException
+	 */
 	@Test
 	void testSearchBS() throws RuntimeException {
 		System.out.println("\n=== Binaray Search Test Begin ===");
@@ -80,7 +90,10 @@ class BookManagerTest {
 
 		System.out.println("*** Pass the Binary Search Book Test ***");
 	}
-
+	/**
+	 * Testing RemoveBook() test remove book, and check if it throws an error if you try to remove a book that doesn't exist
+	 * @throws RuntimeException
+	 */
 	@Test
 	void testRemoveBook() throws RuntimeException {
 		System.out.println("\n=== Remove Book Test Begin ===");
@@ -126,7 +139,10 @@ class BookManagerTest {
 		double improvement = (time1 - time2) / (time1 + 1e-10) * 100;
 		return improvement;
 	}
-
+	/**
+	 * Performance test Measure running time in ns, make 1000000 dummy data 
+	 * For full scan and binary search, measure the time taken to search for the front,mid and end index, respectively
+	 */
 	@Test
 	void peformanceTestOnSearch() {
 		System.out.println("\n=== Search Book Performance Test Begin ===");
