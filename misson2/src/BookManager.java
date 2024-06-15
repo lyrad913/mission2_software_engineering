@@ -12,7 +12,6 @@ import java.util.Vector;
  * 			- role
  * 			- git/jenkins error msg (at least 1, max 5 for each)
  *  		- git project address
- *  asdfㅁㄴㅇ
  */
 
 /*
@@ -29,15 +28,16 @@ public class BookManager {
 	public BookManager() {
 		bookshelf = new Vector<>();
 	}
+
 	/**
 	 * Add book and check if there is a book with the same id
 	 * 
-	 * @param toAdd book you want to add	
+	 * @param toAdd book you want to add
 	 * @throws BookExistException if there is a book with the same id
 	 */
-	public void AddBook(Book toAdd) throws BookManager.BookExistException {
+	public void addBook(Book toAdd) throws BookManager.BookExistException {
 		int id = toAdd.getId();
-		if (this.SearchBook(id) == null) {
+		if (this.searchBook(id) == null) {
 			this.bookshelf.add(toAdd);
 			Collections.sort(this.bookshelf, new BookComparator());
 		} else {
@@ -45,13 +45,14 @@ public class BookManager {
 			throw new BookExistException(msg);
 		}
 	}
+
 	/**
-	 *Find a book based on id in full scan
+	 * Find a book based on id in full scan
 	 *
-	 *@param id target id you want to find
-	 *@return book if there is a book with same id else return null
+	 * @param id target id you want to find
+	 * @return book if there is a book with same id else return null
 	 */
-	public Book SearchBook(int id) {
+	public Book searchBook(int id) {
 		for (Book book : bookshelf) {
 			if (book.getId() == id) {
 				return book;
@@ -59,13 +60,14 @@ public class BookManager {
 		}
 		return null;
 	}
+
 	/**
 	 * Find a book based on id in binary search
 	 * 
 	 * @param id target id you want to find
 	 * @return book if there is a book with same id else return null
 	 */
-	public Book BinarySearchBook(int id) {
+	public Book binarySearchBook(int id) {
 		int left = 0, right = this.bookshelf.size() - 1;
 		while (left <= right) {
 			int mid = (left + right) >> 1;
@@ -81,14 +83,15 @@ public class BookManager {
 		return null;
 
 	}
+
 	/**
 	 * Remove a book based on id
 	 * 
 	 * @param id target id you want to remove
 	 * @thorws BookNOTFindExcetipn if there is no book with same id
 	 */
-	public void RemoveBook(int id) throws BookManager.BookNOTFindException {
-		Book toRemove = this.SearchBook(id);
+	public void removeBook(int id) throws BookManager.BookNOTFindException {
+		Book toRemove = this.searchBook(id);
 		if (toRemove != null) {
 			this.bookshelf.remove(toRemove);
 		} else {
@@ -96,10 +99,11 @@ public class BookManager {
 			throw new BookNOTFindException(msg);
 		}
 	}
+
 	/**
-	 *Return list of books
+	 * Return list of books
 	 *
-	 *@return bookshelf Vector of books 
+	 * @return bookshelf Vector of books
 	 */
 	public Vector<Book> getBookshelf() {
 		return this.bookshelf;

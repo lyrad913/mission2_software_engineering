@@ -18,8 +18,11 @@ class BookManagerTest {
 		book2 = new Book(2, "소프트웨어 공학", "Tom", 2014);
 		book3 = new Book(3, "분산 컴퓨팅", "Yoon", 2024);
 	}
+
 	/**
-	 * Testing AddBook() Add books that have id 1, 2 and 3 and check it throws an error if trying to add books that already existing id 
+	 * Testing AddBook() Add books that have id 1, 2 and 3 and check it throws an
+	 * error if trying to add books that already existing id
+	 * 
 	 * @throws RuntimeException
 	 */
 	@Test
@@ -27,92 +30,101 @@ class BookManagerTest {
 		System.out.println("\n=== Add Book Test Begin ===");
 		System.out.println("Add book id 1, 2, 3 to bookshelf");
 
-		System.out.println("Before Book id 1 add : " + manager.SearchBook(1));
-		manager.AddBook(book1);
-		assertNotNull(manager.SearchBook(1));
-		System.out.println("After Book id 1 Added : " + manager.SearchBook(1));
+		System.out.println("Before Book id 1 add : " + manager.searchBook(1));
+		manager.addBook(book1);
+		assertNotNull(manager.searchBook(1));
+		System.out.println("After Book id 1 Added : " + manager.searchBook(1));
 
-		System.out.println("Before Book id 2 add : " + manager.SearchBook(2));
-		manager.AddBook(book2);
-		assertNotNull(manager.SearchBook(2));
-		System.out.println("After Book id 2 Added : " + manager.SearchBook(2));
+		System.out.println("Before Book id 2 add : " + manager.searchBook(2));
+		manager.addBook(book2);
+		assertNotNull(manager.searchBook(2));
+		System.out.println("After Book id 2 Added : " + manager.searchBook(2));
 
-		System.out.println("Before Book id 3 add : " + manager.SearchBook(3));
-		manager.AddBook(book3);
-		assertNotNull(manager.SearchBook(3));
-		System.out.println("After Book id 3 Added : " + manager.SearchBook(3));
+		System.out.println("Before Book id 3 add : " + manager.searchBook(3));
+		manager.addBook(book3);
+		assertNotNull(manager.searchBook(3));
+		System.out.println("After Book id 3 Added : " + manager.searchBook(3));
 
 		Assertions.assertThrows(BookManager.BookExistException.class, () -> {
-			manager.AddBook(book1);
+			manager.addBook(book1);
 		});
 		System.out.println("Book 1 already Exist.");
 
 		System.out.println("*** Pass the Add Book Test ***");
 
 	}
+
 	/**
-	 * Testing SearchBook() test full scan search, and check if it throws an error if you try to find an id that doesn't exist
+	 * Testing SearchBook() test full scan search, and check if it throws an error
+	 * if you try to find an id that doesn't exist
+	 * 
 	 * @throws RuntimeException
 	 */
 	@Test
 	void testSearchBook() throws RuntimeException {
 		System.out.println("\n=== Search Book Test Begin ===");
 		System.out.println("Add book id 1, 2 to bookshelf");
-		manager.AddBook(book1);
-		manager.AddBook(book2);
+		manager.addBook(book1);
+		manager.addBook(book2);
 
-		assertNotNull(manager.SearchBook(1));
-		System.out.println("Find book id 1 : " + manager.SearchBook(1));
-		assertNotNull(manager.SearchBook(2));
-		System.out.println("Find book id 2 : " + manager.SearchBook(2));
-		assertNull(manager.SearchBook(3));
-		System.out.println("Book id 3 not exist, null return : " + manager.SearchBook(3));
+		assertNotNull(manager.searchBook(1));
+		System.out.println("Find book id 1 : " + manager.searchBook(1));
+		assertNotNull(manager.searchBook(2));
+		System.out.println("Find book id 2 : " + manager.searchBook(2));
+		assertNull(manager.searchBook(3));
+		System.out.println("Book id 3 not exist, null return : " + manager.searchBook(3));
 
 		System.out.println("*** Pass the Search Book Test ***");
 	}
+
 	/**
-	 * Testing BinarySearchBook() test binary search, and check if it throws an error if you try to find an id that doesn't exist
+	 * Testing BinarySearchBook() test binary search, and check if it throws an
+	 * error if you try to find an id that doesn't exist
+	 * 
 	 * @throws RuntimeException
 	 */
 	@Test
 	void testSearchBS() throws RuntimeException {
 		System.out.println("\n=== Binaray Search Test Begin ===");
 		System.out.println("Add book id 1, 2 to bookshelf");
-		manager.AddBook(book1);
-		manager.AddBook(book2);
+		manager.addBook(book1);
+		manager.addBook(book2);
 
-		assertNotNull(manager.BinarySearchBook(1));
-		System.out.println("Find book id 1 : " + manager.BinarySearchBook(1));
-		assertNotNull(manager.BinarySearchBook(2));
-		System.out.println("Find book id 2 : " + manager.BinarySearchBook(2));
-		assertNull(manager.BinarySearchBook(3));
-		System.out.println("Book id 3 not exist, null return : " + manager.BinarySearchBook(3));
+		assertNotNull(manager.binarySearchBook(1));
+		System.out.println("Find book id 1 : " + manager.binarySearchBook(1));
+		assertNotNull(manager.binarySearchBook(2));
+		System.out.println("Find book id 2 : " + manager.binarySearchBook(2));
+		assertNull(manager.binarySearchBook(3));
+		System.out.println("Book id 3 not exist, null return : " + manager.binarySearchBook(3));
 
 		System.out.println("*** Pass the Binary Search Book Test ***");
 	}
+
 	/**
-	 * Testing RemoveBook() test remove book, and check if it throws an error if you try to remove a book that doesn't exist
+	 * Testing RemoveBook() test remove book, and check if it throws an error if you
+	 * try to remove a book that doesn't exist
+	 * 
 	 * @throws RuntimeException
 	 */
 	@Test
 	void testRemoveBook() throws RuntimeException {
 		System.out.println("\n=== Remove Book Test Begin ===");
 		System.out.println("Add book id 1, 2 to bookshelf");
-		manager.AddBook(book1);
-		manager.AddBook(book2);
+		manager.addBook(book1);
+		manager.addBook(book2);
 
-		System.out.println("Before Book id 1 Remove : " + manager.SearchBook(1));
-		manager.RemoveBook(1);
-		assertNull(manager.SearchBook(1));
-		System.out.println("After Book id 1 Removed : " + manager.SearchBook(1));
+		System.out.println("Before Book id 1 Remove : " + manager.searchBook(1));
+		manager.removeBook(1);
+		assertNull(manager.searchBook(1));
+		System.out.println("After Book id 1 Removed : " + manager.searchBook(1));
 
 		Assertions.assertThrows(BookManager.BookNOTFindException.class, () -> {
-			manager.RemoveBook(1);
+			manager.removeBook(1);
 		});
 		System.out.println("Cannot find Book 1");
 
 		Assertions.assertThrows(BookManager.BookNOTFindException.class, () -> {
-			manager.RemoveBook(3);
+			manager.removeBook(3);
 		});
 		System.out.println("Cannot find Book 3");
 
@@ -121,7 +133,7 @@ class BookManagerTest {
 
 	long runSearch(int id) {
 		long start = System.nanoTime();
-		manager.SearchBook(id);
+		manager.searchBook(id);
 		long end = System.nanoTime();
 
 		return end - start;
@@ -129,7 +141,7 @@ class BookManagerTest {
 
 	long runBinarySearch(int id) {
 		long start = System.nanoTime();
-		manager.BinarySearchBook(id);
+		manager.binarySearchBook(id);
 		long end = System.nanoTime();
 
 		return end - start;
@@ -139,9 +151,11 @@ class BookManagerTest {
 		double improvement = (time1 - time2) / (time1 + 1e-10) * 100;
 		return improvement;
 	}
+
 	/**
-	 * Performance test Measure running time in ns, make 1000000 dummy data 
-	 * For full scan and binary search, measure the time taken to search for the front,mid and end index, respectively
+	 * Performance test Measure running time in ns, make 1000000 dummy data For full
+	 * scan and binary search, measure the time taken to search for the front,mid
+	 * and end index, respectively
 	 */
 	@Test
 	void peformanceTestOnSearch() {
